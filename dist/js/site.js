@@ -5,8 +5,6 @@ function init() {
     for(var i = 0; i < nav.length; i++) {
         nav[i].addEventListener("click", ClickNavBtn);
     }
-
-    GetGalleryPic();
 }
 
 function ClickNavBtn(e) {
