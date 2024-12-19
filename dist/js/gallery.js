@@ -2,8 +2,21 @@ var GalleryJson;
 var nowCate = 0;
 var nowPic = 0;
 var totPic = 0;
+var PicLoadComplete = 0;
+var images = new Array();
+var PicImagesArray = new Array();
 
-function GetGalleryPic() {
+function GetGalleryPic() {    
+	var LoadingArea = document.getElementById("LoadingArea");
+	var LoadingPic = document.getElementById("LoadingPic");
+	var LoadingTxt = document.getElementById("LoadingTxt");
+
+    LoadingArea.classList.add("LoadingArea");
+    LoadingArea.classList.remove("noshow");
+    LoadingPic.classList.add("LoadingPic");
+    LoadingTxt.classList.add("LoadingTxt");
+    LoadingTxt.innerHTML = "0%";
+
     fetch("./json/gallery.json")
     .then((response) => response.json())
     .then((json) => GetFalleryPicDataDone(json));
@@ -11,6 +24,8 @@ function GetGalleryPic() {
 
 function GetFalleryPicDataDone(json) {
     GalleryJson = json.gallerys;
+    console.log("GalleryJson =", GalleryJson);
+    GetAllPics();
 
     var GalleryCate = document.getElementById("GalleryCate");
     var GalleryDesc = document.getElementById("GalleryDesc");
@@ -127,4 +142,38 @@ function CheckPageBtn() {
 
     var GalleryPag = document.getElementById("GalleryPag");
     GalleryPag.innerHTML = (nowPic < 10 ? "0" + nowPic : nowPic) + " / " + (totPic < 10 ? "0" + totPic : totPic);
+}
+
+function GetAllPics() {
+    for(var i = 0; i < GalleryJson.length; i++) {
+        for(var j = 0; j < GalleryJson[i].pics.length; j++) {
+            PicImagesArray.push("./images/gallery/" + GalleryJson[i].pics[j].name);
+        }
+    }
+    PicPreloader();
+}
+
+function PicPreloader() {
+    console.log("PicImagesArray =", PicImagesArray.length);
+    var LoadingArea = document.getElementById("LoadingArea");
+	var LoadingPic = document.getElementById("LoadingPic");
+	var LoadingTxt = document.getElementById("LoadingTxt");
+   
+	for (i = 0; i < PicImagesArray.length; i++) {
+        images[i] = new Image();
+		images[i].name = String(PicImagesArray[i]);
+		images[i].src = PicImagesArray[i];
+		images[i].onload = function (e) {
+			PicLoadComplete++;
+			var LoadingPercent = Math.round(PicLoadComplete / PicImagesArray.length * 100);
+			LoadingTxt.innerHTML = LoadingPercent + '%';
+
+			if (PicLoadComplete == PicImagesArray.length) {
+				LoadingTxt.innerHTML = "";
+                LoadingArea.removeAttribute("class");
+                LoadingPic.removeAttribute("class");
+                LoadingTxt.removeAttribute("class");
+			}
+		}		
+	}
 }
