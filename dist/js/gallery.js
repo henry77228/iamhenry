@@ -24,7 +24,6 @@ function GetGalleryPic() {
 
 function GetFalleryPicDataDone(json) {
     GalleryJson = json.gallerys;
-    console.log("GalleryJson =", GalleryJson);
     GetAllPics();
 
     var GalleryCate = document.getElementById("GalleryCate");
@@ -98,7 +97,6 @@ function SwitchGalleryCate(num) {
 
     CheckPageBtn();
     GalleryGotoPage(nowPic);
-    // console.log("nowCate =", nowCate, ", nowPic =", nowPic, ", totPic =", totPic);
 }
 
 function ClickGalleryPage(e) {
@@ -154,7 +152,6 @@ function GetAllPics() {
 }
 
 function PicPreloader() {
-    console.log("PicImagesArray =", PicImagesArray.length);
     var LoadingArea = document.getElementById("LoadingArea");
 	var LoadingPic = document.getElementById("LoadingPic");
 	var LoadingTxt = document.getElementById("LoadingTxt");
