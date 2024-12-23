@@ -63,7 +63,7 @@ function LoadActiveFunc() {
     var Actsvg = document.createElement("object");
     Actsvg.id = "Actsvg";
     Actsvg.type = "image/svg+xml";
-    Actsvg.data = "/images/games/" + NowCode + ".svg?" + Math.floor(Math.random() * 999);
+    Actsvg.data = "./images/games/" + NowCode + ".svg?" + Math.floor(Math.random() * 999);
 
 
     Actsvg.addEventListener("load", function () {
