@@ -6,14 +6,9 @@ var PicLoadComplete = 0;
 var images = new Array();
 var PicImagesArray = new Array();
 
-function GetGalleryPic() {    
-	var LoadingArea = document.getElementById("LoadingArea");
-	var LoadingPic = document.getElementById("LoadingPic");
+function GetGalleryPic() {
+    SwitchLoadingPage(true);
 	var LoadingTxt = document.getElementById("LoadingTxt");
-
-    LoadingArea.classList.add("LoadingArea");
-    LoadingArea.classList.remove("noshow");
-    LoadingPic.classList.add("LoadingPic");
     LoadingTxt.classList.add("LoadingTxt");
     LoadingTxt.innerHTML = "0%";
 
@@ -166,10 +161,8 @@ function PicPreloader() {
 			LoadingTxt.innerHTML = LoadingPercent + '%';
 
 			if (PicLoadComplete == PicImagesArray.length) {
-				LoadingTxt.innerHTML = "";
-                LoadingArea.removeAttribute("class");
-                LoadingPic.removeAttribute("class");
-                LoadingTxt.removeAttribute("class");
+				LoadingTxt.innerHTML = "";                
+                SwitchLoadingPage(false);                
 			}
 		}		
 	}
