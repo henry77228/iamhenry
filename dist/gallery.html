@@ -25,6 +25,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" action="gallery">Gallery</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" action="game">Game</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -32,7 +35,7 @@
     </header>
     <div id="LoadingArea" class="LoadingArea">
         <div id="LoadingPic" class="LoadingPic"></div>        
-        <div id="LoadingTxt" class="LoadingTxt">100%</div>        
+        <div id="LoadingTxt" class="LoadingTxt"></div>        
     </div>
     <div class="container">
         <main role="main" class="pb-3">
@@ -66,6 +69,7 @@
     <script src="./lib/jquery/dist/jquery.min.js"></script>
     <script src="./lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>  
     <script src="./js/site.js" asp-append-version="true"></script>  
+    <script src="./js/loading.js" asp-append-version="true"></script>  
     <script> init(); GetGalleryPic();</script>
 </body>
 </html>
