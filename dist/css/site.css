@@ -29,7 +29,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #99999980;
-  position: absolute;
+  position: fixed;
   top: 0; left: 0;
   z-index: 999;
 }
