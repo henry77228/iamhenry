@@ -23,6 +23,7 @@ function GetFalleryPicDataDone(json) {
 
     var GalleryCate = document.getElementById("GalleryCate");
     var GalleryDesc = document.getElementById("GalleryDesc");
+    var GalleryPic = document.getElementById("GalleryPic");
     var GalleryLbt = document.getElementById("GalleryLbt");
     var GalleryRbt = document.getElementById("GalleryRbt");
 
@@ -55,6 +56,9 @@ function GetFalleryPicDataDone(json) {
     // GalleryLbt.addEventListener("touchend", ClickGalleryPage);
     GalleryRbt.addEventListener("click", ClickGalleryPage);
     // GalleryRbt.addEventListener("touchend", ClickGalleryPage);
+
+    //放大
+    GalleryPic.addEventListener("click", function () { ZoomGalleryFunc(true); });
 
     nowCate = 0;
     SwitchGalleryCate(nowCate);
@@ -108,6 +112,20 @@ function ClickGalleryPage(e) {
     CheckPageBtn();
     GalleryGotoPage(nowPic);
 }
+function ClickZoomGalleryPage(e) {
+    var btn = e.currentTarget;
+    
+    if(btn.id == "ZoomGalleryLbt") {
+        //向左、頁數減少
+        (nowPic > 1 ? nowPic-- : nowPic = 1);
+    } else if(btn.id == "ZoomGalleryRbt") {
+        //向右、頁數增加
+        (nowPic < (totPic - 1) ? nowPic++ : nowPic = totPic);
+    }
+
+    CheckPageBtn();
+    GalleryGotoPage(nowPic);
+}
 
 function GalleryGotoPage(num) {
     var GalleryPic = document.getElementById("GalleryPic");
@@ -115,26 +133,58 @@ function GalleryGotoPage(num) {
 
     var img = GalleryPic.querySelector("img");
     img.src = "./images/gallery/" + GalleryJson[nowCate].pics[nowPic - 1].name;
-    GalleryTxt.innerHTML = GalleryJson[nowCate].pics[nowPic - 1].desc;    
+    GalleryTxt.innerHTML = GalleryJson[nowCate].pics[nowPic - 1].desc;
+    
+    var ZoomGalleryPic = document.getElementById("ZoomGalleryPic");
+
+    var img = ZoomGalleryPic.querySelector("img");
+    img.src = "./images/gallery/" + GalleryJson[nowCate].pics[nowPic - 1].name;
 }
 
+function ZoomGalleryFunc(io) {
+    var ZoomGalleryArea = document.getElementById("ZoomGalleryArea");
+    var ZoomGalleryClose = document.getElementById("ZoomGalleryClose");
+    var ZoomGalleryLbt = document.getElementById("ZoomGalleryLbt");
+    var ZoomGalleryRbt = document.getElementById("ZoomGalleryRbt");
+
+    if(io) {
+        ZoomGalleryArea.classList.remove("noshow");
+        ZoomGalleryClose.addEventListener("click", function () { ZoomGalleryFunc(false); });
+        ZoomGalleryLbt.addEventListener("click", ClickZoomGalleryPage);
+        ZoomGalleryRbt.addEventListener("click", ClickZoomGalleryPage);
+    } else {
+        ZoomGalleryArea.classList.add("noshow");
+        ZoomGalleryClose.removeEventListener("click", function () { ZoomGalleryFunc(false); });
+        ZoomGalleryLbt.removeEventListener("click", ClickZoomGalleryPage);
+        ZoomGalleryRbt.removeEventListener("click", ClickZoomGalleryPage);
+    }
+
+}
 function CheckPageBtn() {
     var GalleryLbt = document.getElementById("GalleryLbt");
     var GalleryRbt = document.getElementById("GalleryRbt");
+    var ZoomGalleryLbt = document.getElementById("ZoomGalleryLbt");
+    var ZoomGalleryRbt = document.getElementById("ZoomGalleryRbt");
 
     if(nowPic == 1) {
         GalleryLbt.classList.add("ds-none");
+        ZoomGalleryLbt.classList.add("ds-none");
     } else {
         GalleryLbt.classList.remove("ds-none");
+        ZoomGalleryLbt.classList.remove("ds-none");
     }
     if(nowPic == totPic) {
         GalleryRbt.classList.add("ds-none");
+        ZoomGalleryRbt.classList.add("ds-none");
     } else if(nowPic < totPic) {
         GalleryRbt.classList.remove("ds-none");
+        ZoomGalleryRbt.classList.remove("ds-none");
     }
 
     var GalleryPag = document.getElementById("GalleryPag");
+    var ZoomGalleryPag = document.getElementById("ZoomGalleryPag");
     GalleryPag.innerHTML = (nowPic < 10 ? "0" + nowPic : nowPic) + " / " + (totPic < 10 ? "0" + totPic : totPic);
+    ZoomGalleryPag.innerHTML = (nowPic < 10 ? "0" + nowPic : nowPic) + " / " + (totPic < 10 ? "0" + totPic : totPic);
 }
 
 function GetAllPics() {
