@@ -6,6 +6,7 @@
     <title>iamHenry - Gallery</title>
     <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="./css/gallery.css" asp-append-version="true" />
     <script src="./js/gallery.js" asp-append-version="true"></script>
 </head>
 <body>
@@ -36,6 +37,15 @@
     <div id="LoadingArea" class="LoadingArea">
         <div id="LoadingPic" class="LoadingPic"></div>        
         <div id="LoadingTxt" class="LoadingTxt"></div>        
+    </div>    
+    <div id="ZoomGalleryArea" class="ZoomGalleryArea noshow">
+        <div id="ZoomGalleryPic" class="zoom-gallery-pic">
+            <div id="ZoomGalleryLbt" class="zoom-gallery-l-btn ds-none"></div>
+            <img src="./images/gallery/a/a01.jpg">
+            <div id="ZoomGalleryRbt" class="zoom-gallery-r-btn ds-none"></div>   
+            <div id="ZoomGalleryPag" class="zoom-gallery-page">01 / 12</div>
+        </div>
+        <div id="ZoomGalleryClose" class="zoom-gallery-close"></div>
     </div>
     <div class="container">
         <main role="main" class="pb-3">
