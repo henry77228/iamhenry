@@ -1,0 +1,41 @@
+body {
+    font-size: 100px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 666;
+}
+
+.test-content {
+    width: 100vw;
+    height: 40vh;    
+}
+
+.gtext {
+    /* border: 1px #F00 solid; */
+    width: 535px;
+    justify-content: flex-start;
+    white-space: nowrap;
+    --text-width: 535px;
+    --gsplits: 6;
+    --offset: calc(var(--text-width) / var(--gsplits));
+    grid-template-columns: repeat(var(--gsplits), var(--offset));
+    color: var(--Skin);
+    justify-content: center;
+    margin: 0;
+    line-height: 1;
+    display: grid;
+    margin: 1% 0 0 18vw;
+}
+
+.gtext-box {
+    will-change: transform;
+    margin-right: -.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gtext-box-inner {
+    will-change: transform;
+    width: max-content;
+    display: block;
+    position: relative;
+}
