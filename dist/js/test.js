@@ -3,8 +3,9 @@ var windowHeight = window.innerHeight;
 var scrollPercent = window.scrollY / (documentHeight - windowHeight);
 document.addEventListener("scroll", ScrollFunc);
 
-var textWidth = [535, 370];
+var textWidth = [535, 370, 410];
 var gsplit = 6;
+var fixpos = 0.4;
 
 function ScrollFunc(e) {
     scrollPercent = window.scrollY / (documentHeight - windowHeight);
@@ -12,12 +13,10 @@ function ScrollFunc(e) {
 }
 
 function SetTextInner(sp) {
-    var sp2 = 0.3;
-    sp = (sp > sp2 ? sp2 : sp);
+    sp = (sp > fixpos ? fixpos : sp);
 
     var gtext = document.querySelectorAll(".gtext");
     var gwidth;
-    var nowText;
 
     for(var i = 0; i < gtext.length; i++) {
         gtext[i].setAttribute("style", "width: " + textWidth[i] + "px; --text-width: " + textWidth[i] + "px; --gsplit: " + gsplit);
@@ -29,11 +28,11 @@ function SetTextInner(sp) {
             var tx, ty, transX, transY, offsetX, offsetY;
             offsetX = 35;
             offsetY = 75;
-            tx = (j < 3 ? -1 : 1);
+            tx = (j < (gsplit / 2) ? -1 : 1);
             ty = (j % 2 == 0 ? -1 : 1);
 
-            transX = (sp2 - sp) * offsetX * tx;
-            transY = (sp2 - sp) * offsetY * ty;
+            transX = (fixpos - sp) * offsetX * tx;
+            transY = (fixpos - sp) * offsetY * ty;
 
             // gwidth = 0;
 
