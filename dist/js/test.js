@@ -3,6 +3,9 @@ var windowHeight = window.innerHeight;
 var scrollPercent = window.scrollY / (documentHeight - windowHeight);
 document.addEventListener("scroll", ScrollFunc);
 
+var textWidth = [535, 370];
+var gsplit = 6;
+
 function ScrollFunc(e) {
     scrollPercent = window.scrollY / (documentHeight - windowHeight);
     SetTextInner(scrollPercent);
@@ -13,8 +16,6 @@ function SetTextInner(sp) {
     sp = (sp > sp2 ? sp2 : sp);
 
     var gtext = document.querySelectorAll(".gtext");
-    var textWidth = [535, 370];
-    var gsplit = 6;
     var gwidth;
     var nowText;
 
@@ -42,4 +43,24 @@ function SetTextInner(sp) {
 
 }
 
+function CreateBoxInner() {
+    var gtext = document.querySelectorAll(".gtext");
+
+    for(var i = 0; i < gtext.length; i++) {
+        var text = gtext[i].getAttribute("data-text");
+        for(var j = 0; j < gsplit; j++) {
+            var box = document.createElement("span");
+            var inner = document.createElement("span");
+
+            box.setAttribute("class", "gtext-box");
+            inner.setAttribute("class", "gtext-box-inner");
+            inner.innerHTML = text;
+
+            box.appendChild(inner);
+            gtext[i].appendChild(box);
+        }
+    }
+}
+
+CreateBoxInner();
 SetTextInner(scrollPercent);
