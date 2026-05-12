@@ -2,6 +2,22 @@
     "gallerys": [
         {
             "titl": "A", 
+            "name": "2025臺南購物節", 
+            "desc": "", 
+            "pics": [
+                { "name": "d/a01.jpg", "desc": "2025臺南購物節首頁" }, 
+                { "name": "d/a02.jpg", "desc": "掃描發票功能展示" }, 
+                { "name": "d/a03.jpg", "desc": "手動登錄發票頁面" }, 
+                { "name": "d/a04.jpg", "desc": "載具管理及綁定頁面" }, 
+                { "name": "d/a05.jpg", "desc": "我的抽獎序號頁面" }, 
+                { "name": "d/a06.jpg", "desc": "會員中心頁面" }, 
+                { "name": "d/a07.jpg", "desc": "2025臺南購物節首頁(手機瀏覽RWD)" }, 
+                { "name": "d/a08.jpg", "desc": "選單展開示意(手機瀏覽RWD)" }, 
+                { "name": "d/a09.jpg", "desc": "會員中心頁面(手機瀏覽RWD)" }, 
+                { "name": "d/a10.jpg", "desc": "載具管理及綁定頁面(手機瀏覽RWD)" }
+            ]
+        }, {
+            "titl": "B", 
             "name": "aniMath自學網", 
             "desc": "https://study.animath.com.tw/", 
             "pics": [
@@ -28,7 +44,7 @@
                 { "name": "a/a21.jpg", "desc": "aniMath自學中心影音館2" }
             ]
         }, {
-            "titl": "B", 
+            "titl": "C", 
             "name": "Flash遊戲程式設計", 
             "desc": "", 
             "pics": [
@@ -40,7 +56,7 @@
                 { "name": "b/b06.jpg", "desc": "鬼腳圖" }
             ]
         }, {
-            "titl": "C", 
+            "titl": "D", 
             "name": "APP程式設計(以Flash開發)", 
             "desc": "", 
             "pics": [
